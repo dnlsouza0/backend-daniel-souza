@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Infobase_CustomerMovie::infobase" title="Infobase"
+             module="Infobase_CustomerMovie" sortOrder="51" resource="Infobase_CustomerMovie::infobase"/>
+
+        <add id="Infobase_CustomerMovie::movie" title="Customer Movie" module="Infobase_CustomerMovie"
+             sortOrder="10" action="customermovie/movie"
+             resource="Infobase_CustomerMovie::movie" parent="Infobase_CustomerMovie::infobase"/>
+    </menu>
+</config>
