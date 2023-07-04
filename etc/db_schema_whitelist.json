@@ -1,0 +1,16 @@
+{
+    "infobase_customer_movie": {
+        "column": {
+            "id": true,
+            "customer_group_id": true,
+            "name": true,
+            "description": true,
+            "release_day": true,
+            "link_trailers": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "INFOBASE_CSTR_MOVIE_CSTR_GROUP_ID_CSTR_GROUP_CSTR_GROUP_ID": true
+        }
+    }
+}

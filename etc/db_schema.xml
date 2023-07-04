@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="infobase_customer_movie" resource="default"
+           engine="innodb" comment="Infobase Customer Movie Table">
+
+        <column xsi:type="int" name="id"
+                padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+        <column xsi:type="int" name="customer_group_id" unsigned="true" nullable="false" identity="false"/>
+        <column name="name" nullable="false" xsi:type="text" comment="Name"/>
+        <column name="description" nullable="true" xsi:type="text" comment="Description"/>
+        <column name="release_day" nullable="false" xsi:type="timestamp" comment="Date release" />
+        <column name="link_trailers" nullable="true" xsi:type="text"
+                comment="interest_discount"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Updated At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign"
+                    referenceId="CUSTOMER_GROUP_CUSTOMER_GROUP_ID_INFOBASE_CUSTOMER_MOVIE_CUSTOMER_GROUP_ID"
+                    table="infobase_customer_movie" column="customer_group_id"
+                    referenceTable="customer_group" referenceColumn="customer_group_id"/>
+    </table>
+</schema>
