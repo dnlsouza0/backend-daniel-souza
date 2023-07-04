@@ -1,0 +1,38 @@
+<?php
+/** @var \Infobase\CustomerMovie\Block\Movie\View $block */
+?>
+<?php
+    $movie = $block->getMovieToView();
+?>
+
+<?php if($block->moduleIsEnable()): ?>
+<div class="container movie-container">
+    <h2 class="title"> <?= $movie->getName(); ?></h2>
+
+    <div class="content movie-content">
+        <div class="movie-description">
+            <p class="text"> <span class="label label-text"> <?= __('Description: '); ?> </span> </p>
+            <p> <?= $movie->getDescription(); ?> </p>
+        </div>
+
+        <div class="release-day">
+            <p class="date"> <span class="label label-text"> <?= __('Release Day: '); ?> </span> <?= $block->convertDate($movie->getReleaseDay()) ?> </p>
+        </div>
+
+        <div class="ifame-movie">
+            <iframe
+                width="1268" height="713" src="<?= $block->getEmbedUrl($movie->getLinkTrailers()); ?>"
+                title="" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <div class="btn-back">
+            <a href="/customermovie/movie/index/">
+                <?php __('Back to list') ?>
+            </a>
+        </div>
+    </div>
+</div>
+
+<?php endif; ?>

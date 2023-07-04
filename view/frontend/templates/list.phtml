@@ -1,0 +1,54 @@
+<?php
+/** @var \Infobase\CustomerMovie\Block\Movie\Index $block */
+?>
+<?php $movies = $block->getMovies(); ?>
+
+<?php
+if ($block->moduleIsEnable()):
+    if ($movies):
+?>
+<div class="table-wrapper movies-history">
+    <table class="data table table-movie-items history" id="my-movies-table">
+        <caption class="table-caption"><?= $block->escapeHtml(__('Movies')) ?></caption>
+        <thead>
+            <tr>
+                <th scope="col" class="col id"><?= $block->escapeHtml(__('Movie #')) ?></th>
+                <th scope="col" class="col date"><?= $block->escapeHtml(__('Group Name')) ?></th>
+                <?= $block->getChildHtml('extra.column.header') ?>
+                <th scope="col" class="col total"><?= $block->escapeHtml(__('Name')) ?></th>
+                <th scope="col" class="col status"><?= $block->escapeHtml(__('Description')) ?></th>
+                <th scope="col" class="col status"><?= $block->escapeHtml(__('Release Day')) ?></th>
+                <th scope="col" class="col status"><?= $block->escapeHtml(__('Trailers Links')) ?></th>
+                <th scope="col" class="col actions"><?= $block->escapeHtml(__('Action')) ?></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($movies as $movie) : ?>
+            <tr>
+                <td data-th="<?= $block->escapeHtml(__('Movie #')) ?>" class="col id"><?= $block->escapeHtml($movie['id']) ?></td>
+                <td data-th="<?= $block->escapeHtml(__('Customer Group Name')) ?>" class="col code"><?= /* @noEscape */ $block->escapeHtml($movie['customer_code']) ?></td>
+
+                <?php $extra = $block->getChildBlock('extra.container'); ?>
+                <?php if ($extra) : ?>
+                    <?php $extra->setOrder($movie); ?>
+                    <?= $extra->getChildHtml() ?>
+                <?php endif; ?>
+
+                <td data-th="<?= $block->escapeHtml(__('Name')) ?>" class="col name"><?= /* @noEscape */ $block->escapeHtml($movie['name']) ?></td>
+                <td data-th="<?= $block->escapeHtml(__('Description')) ?>" class="col description"><?= $block->escapeHtml($movie['description']) ?></td>
+                <td data-th="<?= $block->escapeHtml(__('Release Day')) ?>" class="col release-day"><?= $block->formatDate($movie['release_day']) ?></td>
+                <td data-th="<?= $block->escapeHtml(__('Trailers Links')) ?>" class="col link-trailers"><?= $block->escapeHtml($movie['link_trailers']) ?></td>
+                <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                    <a href="<?= $block->escapeUrl($block->getViewUrl($movie['id'])) ?>" class="action view">
+                        <span><?= $block->escapeHtml(__('View Movie')) ?></span>
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+    <?php else : ?>
+        <div class="message info empty"><span><?= __('Movies for to group customer is empty.') ?></span></div>
+    <?php endif; ?>
+<?php endif; ?>
